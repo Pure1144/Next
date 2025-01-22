@@ -11,33 +11,65 @@ export const StepTwo = () => {
 
     if (!formValue.mailName || formValue.mailName.length === 0) {
       setErrors((prev) => ({ ...prev, mailName: "Майл хаягаа оруулна уу?" }));
+    }else if(validateEmail(formValue.mailName) !== true){
+        setErrors((prev) => ({ ...prev, mailName: "Зөв майл хаяг оруулна уу?" }));
     } else {
       setErrors((prev) => ({ ...prev, mailName: "" }));
-    }
+    }                                                      //validate mail шалгах функц
 
-    const validateEmail = (email) => {
-      return String(email)
-        .toLowerCase()
-        .match(
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        );
-    };
-
-    // dsffdsfddf
-
+    function validateEmail(email) {  
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+      }                               //https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript -эндээс татаж  оруулсан.
+          
     if (!formValue.phoneNumberName || formValue.phoneNumberName?.length === 0) {
       setErrors((prev) => ({
         ...prev,
         phoneNumberName: "Утасны дугаараа орууна уу?",
       }));
-    } else {
-      setErrors((prev) => ({ ...prev, phoneNumberName: "" }));
     }
+    else if (!formValue.phoneNumberName || formValue.phoneNumberName?.length < 8) {
+        setErrors((prev) => ({
+          ...prev,
+          phoneNumberName: "Зөв утасны дугаараа орууна уу?" }))
+    }else {
+      setErrors((prev) => ({ ...prev, phoneNumberName: "" }));     //validate утасны дугаар шалгах функц
+    }
+
+
     if (!formValue.password || formValue.password?.length === 0) {
       setErrors((prev) => ({ ...prev, password: "Нууц үгээ орууна уу?" }));
-    } else {
+    }
+    
+    // else if (!formValue.password || formValue.password?.length < 8) {
+    //     setErrors((prev) => ({ ...prev, password: "8-аас их урттай нууц үг оруулна уу" }));
+    //   } 
+
+     else if (!validatePassword.password || formValue.password?.length < 8) {
+        setErrors((prev) => ({ ...prev, password: "8-аас их урттай нууц үг оруулна уу" }));
+    }else if(validatePassword(formValue.password !== true)){
+        setErrors((prev) => ({ ...prev, password: "Зөв майл хаяг оруулна уу?" }));
+    }
+    
+    else {
       setErrors((prev) => ({ ...prev, password: "" }));
     }
+
+    function validatePassword(pw) {
+
+        return /[A-Z]/       .test(pw) &&
+               /[a-z]/       .test(pw) &&
+               /[0-9]/       .test(pw) &&
+               /[^A-Za-z0-9]/.test(pw) &&
+               pw.length > 4;
+    
+    }
+
+
+
+
+
+
     if (!formValue.confirmPassword || formValue.confirmPassword?.length === 0) {
       setErrors((prev) => ({
         ...prev,

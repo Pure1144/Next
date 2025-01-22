@@ -67,6 +67,7 @@ export const StepThree = () => {
                 </label>
 
              <input id="dateOfBirthName"
+             type="date"
              onChange={onDateOfBirthNameChange}
              className="id=dateOfBirthName w-full border py-3 px-2 rounded-xl" 
             placeholder="yyyy.mm.dd"
