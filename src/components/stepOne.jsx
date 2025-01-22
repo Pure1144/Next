@@ -18,15 +18,20 @@ export const StepOne = () => {
         if(!formValue.secondName || formValue.secondName?.length === 0) {
             setErrors((prev)=> ({...prev, secondName:"Заавал нэр орууна уу?"})); 
         }else{
-            setErrors((prev)=> ({...prev, secondName:""})); 
+            setErrors((prev)=> ({...prev, secondName:""}))};
+        if(!formValue.userName || formValue.userName?.length === 0) {
+            setErrors((prev)=> ({...prev, userName:"Заавал нэр орууна уу?"})); 
+        }else{
+        setErrors((prev)=> ({...prev, userName:""}))};
+        
            
             
-        }
-
+    
+        };
         // setErrors({})   
 
         // console.log("working");
-       };
+      
         
     //    console.log(errors);
        
@@ -36,6 +41,9 @@ export const StepOne = () => {
 
        const onSecondNameChange = (e) => 
         setFormValue({...formValue, secondName: e.target.value});
+
+       const onUserNameChange = (e) => 
+        setFormValue({...formValue, userName: e.target.value});
      
 
 
@@ -84,10 +92,29 @@ export const StepOne = () => {
             )}
 
              </div>
+
+             <div className="flex flex-col mt-10">   
+             <label htmlFor="userName">
+                UserName <span className="text-red-500">*</span>
+                </label>
+
+             <input id="userName"
+             onChange={onUserNameChange}
+             className="id=userName w-full border py-3 px-2 rounded-xl" 
+            placeholder="userName"
+            />  
+
+             {errors.userName ? (
+                <p className="text-red-500">{errors.userName}</p> 
+             ) : (
+             <></>
+            )}
+
+             </div>
              
 
              <button onClick={onSubmit}
-             className="border w-full bg-black text-white h-16 mt-10 rounded-xl font-bold text-xl">Submit</button>
+             className="border w-full bg-black text-white h-16 mt-10 rounded-xl font-bold text-xl">Continue 1/3</button>
         </div>
     );
 };
