@@ -11,71 +11,72 @@ export const StepTwo = () => {
 
     if (!formValue.mailName || formValue.mailName.length === 0) {
       setErrors((prev) => ({ ...prev, mailName: "Майл хаягаа оруулна уу?" }));
-    }else if(validateEmail(formValue.mailName) !== true){
-        setErrors((prev) => ({ ...prev, mailName: "Зөв майл хаяг оруулна уу?" }));
+    } else if (validateEmail(formValue.mailName) !== true) {
+      setErrors((prev) => ({ ...prev, mailName: "Зөв майл хаяг оруулна уу?" }));
     } else {
       setErrors((prev) => ({ ...prev, mailName: "" }));
-    }                                                      //validate mail шалгах функц
+    } //validate mail шалгах функц
 
-    function validateEmail(email) {  
-        var re = /\S+@\S+\.\S+/;
-        return re.test(email);
-      }                               //https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript -эндээс татаж  оруулсан.
-          
+    function validateEmail(email) {
+      var re = /\S+@\S+\.\S+/;
+
+      return re.test(email);
+    } //https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript -эндээс татаж  оруулсан.
+
     if (!formValue.phoneNumberName || formValue.phoneNumberName?.length === 0) {
       setErrors((prev) => ({
         ...prev,
         phoneNumberName: "Утасны дугаараа орууна уу?",
       }));
+    } else if (
+      !formValue.phoneNumberName ||
+      formValue.phoneNumberName?.length < 8
+    ) {
+      setErrors((prev) => ({
+        ...prev,
+        phoneNumberName: "Зөв утасны дугаараа орууна уу?",
+      }));
+    } else {
+      setErrors((prev) => ({ ...prev, phoneNumberName: "" })); //validate утасны дугаар шалгах функц
     }
-    else if (!formValue.phoneNumberName || formValue.phoneNumberName?.length < 8) {
-        setErrors((prev) => ({
-          ...prev,
-          phoneNumberName: "Зөв утасны дугаараа орууна уу?" }))
-    }else {
-      setErrors((prev) => ({ ...prev, phoneNumberName: "" }));     //validate утасны дугаар шалгах функц
-    }
-
 
     if (!formValue.password || formValue.password?.length === 0) {
       setErrors((prev) => ({ ...prev, password: "Нууц үгээ орууна уу?" }));
     }
-    
-    // else if (!formValue.password || formValue.password?.length < 8) {
-    //     setErrors((prev) => ({ ...prev, password: "8-аас их урттай нууц үг оруулна уу" }));
-    //   } 
 
-     else if (!validatePassword.password || formValue.password?.length < 8) {
-        setErrors((prev) => ({ ...prev, password: "8-аас их урттай нууц үг оруулна уу" }));
-    }else if(validatePassword(formValue.password !== true)){
-        setErrors((prev) => ({ ...prev, password: "Зөв майл хаяг оруулна уу?" }));
-    }
+  
     
-    else {
+    else if (validatePassword(formValue.password) !== true) {
+      setErrors((prev) => ({
+        ...prev,
+        password: "Нууц үг нь нэгээс багагүй тоо,том, жижиг үсэг,тусгай тэмдэгт агуулсан 8-аас багагүй урттай байна.",
+      }));
+    } else {
       setErrors((prev) => ({ ...prev, password: "" }));
     }
 
-    function validatePassword(pw) {
-
-        return /[A-Z]/       .test(pw) &&
-               /[a-z]/       .test(pw) &&
-               /[0-9]/       .test(pw) &&
-               /[^A-Za-z0-9]/.test(pw) &&
-               pw.length > 4;
-    
+    function validatePassword(password) {
+      var re = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/;
+      return re.test(password);
     }
 
+    
 
-
-
-
-
-    if (!formValue.confirmPassword || formValue.confirmPassword?.length === 0) {
+    if (!formValue.confirmPassword || formValue.confirmPassword.length === 0) {
       setErrors((prev) => ({
         ...prev,
         confirmPassword: "Нууц үгээ давтаж орууна уу?",
       }));
-    } else {
+
+    } 
+    else if (formValue.confirmPassword !== formValue.password){
+        setErrors((prev) => ({
+            ...prev,
+            confirmPassword: "Таны пасспорт таарахгүй байна.", 
+        }));
+    }
+    
+    else {
       setErrors((prev) => ({ ...prev, confirmPassword: "" }));
     }
   };
