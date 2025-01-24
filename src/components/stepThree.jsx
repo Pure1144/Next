@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const StepThree = () => {
+export const StepThree = ({setStep}) => {
   // const [firstName, setFirstName] = useState('');
 
   const [formValue, setFormValue] = useState({});

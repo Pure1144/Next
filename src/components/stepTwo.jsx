@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const StepTwo = () => {
+export const StepTwo = ({setStep}) => {
   // const [firstName, setFirstName] = useState('');
 
   const [formValue, setFormValue] = useState({});
@@ -79,6 +79,7 @@ export const StepTwo = () => {
     else {
       setErrors((prev) => ({ ...prev, confirmPassword: "" }));
     }
+    setStep(3) 
   };
 
   // setErrors({})
