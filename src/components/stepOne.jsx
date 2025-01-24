@@ -1,6 +1,6 @@
 import  { useState} from "react";
 
-export const StepOne = () => {
+export const StepOne = ({setStep}) => {
 
     // const [firstName, setFirstName] = useState('');
 
@@ -24,7 +24,7 @@ export const StepOne = () => {
         }else{
         setErrors((prev)=> ({...prev, userName:""}))};
         
-           
+          setStep(2) 
             
     
         };

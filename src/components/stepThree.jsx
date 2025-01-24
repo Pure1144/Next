@@ -29,9 +29,9 @@ export const StepThree = () => {
 
     if (!formValue.dateOfBirthName || formValue.dateOfBirthName.length === 0) {
         setErrors((prev) => ({ ...prev, dateOfBirthName: "Та төрсөн он,сар, өдрөө оруулна уу?" }));
-      } else if (!formValue.today-formValue.dateOfBirthName > 18) !== true) {
-        setErrors((prev) => ({ ...prev, dateOfBirthName: "Та 18 ба түүнээс дээш настай байх ёстой." }));
-      } else {
+    //   } else if (!formValue.today-formValue.dateOfBirthName > 18) !== true) {
+    //     setErrors((prev) => ({ ...prev, dateOfBirthName: "Та 18 ба түүнээс дээш настай байх ёстой." }));
+    //   } else {
         setErrors((prev) => ({ ...prev, dateOfBirthName: "" }));
       }
 
