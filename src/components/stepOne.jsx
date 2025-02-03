@@ -2,23 +2,25 @@ import  { useState} from "react";
 
 export const StepOne = ({setStep}) => {
 
-    // const [firstName, setFirstName] = useState('');
+    //  const [firstName, setFirstName] = useState('');
 
     const [formValue, setFormValue] = useState({});
     const [errors, setErrors] = useState({});
 
 
        const onSubmit =()=>{
-        console.log(formValue);
+        // console.log(formValue);
         
         if(!formValue.firstName || formValue.firstName.length === 0) {
             setErrors((prev)=> ({...prev, firstName:"Заавал нэр орууна уу?"})); 
         }else{
             setErrors((prev)=> ({...prev, firstName:""}))};
+
         if(!formValue.secondName || formValue.secondName?.length === 0) {
             setErrors((prev)=> ({...prev, secondName:"Заавал нэр орууна уу?"})); 
         }else{
             setErrors((prev)=> ({...prev, secondName:""}))};
+
         if(!formValue.userName || formValue.userName?.length === 0) {
             setErrors((prev)=> ({...prev, userName:"Заавал нэр орууна уу?"})); 
         }else{
