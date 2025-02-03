@@ -6,6 +6,7 @@ export const StepThree = ({setStep}) => {
   const [formValue, setFormValue] = useState({});
   const [errors, setErrors] = useState({});
   const [file, setFile] = useState();
+
     function handleChange(e) {
         console.log(e.target.files);
         setFile(URL.createObjectURL(e.target.files[0]));
@@ -15,44 +16,48 @@ export const StepThree = ({setStep}) => {
 
   const onSubmit = () => {
     console.log(formValue);
+    let isErrorOccured = false;
 
-    // if (!formValue.firstName || formValue.firstName.length === 0) {
-    //   setErrors((prev) => ({ ...prev, firstName: "Заавал нэр орууна уу?" }));
-    // } else {
-    //   setErrors((prev) => ({ ...prev, firstName: "" }));
-    // }
-    // if (!formValue.secondName || formValue.secondName?.length === 0) {
-    //   setErrors((prev) => ({ ...prev, secondName: "Заавал нэр орууна уу?" }));
-    // } else {
-    //   setErrors((prev) => ({ ...prev, secondName: "" }));
-    // }
+ 
 
     if (!formValue.dateOfBirthName || formValue.dateOfBirthName.length === 0) {
         setErrors((prev) => ({ ...prev, dateOfBirthName: "Та төрсөн он,сар, өдрөө оруулна уу?" }));
-    //   } else if (!formValue.today-formValue.dateOfBirthName > 18) !== true) {
-    //     setErrors((prev) => ({ ...prev, dateOfBirthName: "Та 18 ба түүнээс дээш настай байх ёстой." }));
-    //   } else {
-        setErrors((prev) => ({ ...prev, dateOfBirthName: "" }));
+        // isErrorOccured = true;
+
+      //  } else if (!formValue.today-formValue.dateOfBirthName > 18) !== true) {
+      //    setErrors((prev) => ({ ...prev, dateOfBirthName: "Та 18 ба түүнээс дээш настай байх ёстой." }));
+ 
+      // } else {
+      //   setErrors((prev) => ({ ...prev, dateOfBirthName: "" }));
       }
 
     // setErrors({})
 
     // console.log("working");
+    if (isErrorOccured === false) {
+      setStep(4);
+    }
+    // setStep(4)
+  };
+
+  const onBack = () => {
+
+    setStep(2) 
   };
 
   //    console.log(errors);
 
-  const onEmailNameChange = (e) =>
-    setFormValue({ ...formValue, firstName: e.target.value });
+  // const onEmailNameChange = (e) =>
+  //   setFormValue({ ...formValue, firstName: e.target.value });
 
-  const onPhoneNumberNameChange = (e) =>
-    setFormValue({ ...formValue, secondName: e.target.value });
+  // const onPhoneNumberNameChange = (e) =>
+  //   setFormValue({ ...formValue, secondName: e.target.value });
 
-  const onPasswordChange = (e) =>
-    setFormValue({ ...formValue, password: e.target.value });
+  // const onPasswordChange = (e) =>
+  //   setFormValue({ ...formValue, password: e.target.value });
 
-  const onConfirmPasswordChange = (e) =>
-    setFormValue({ ...formValue, confirmPassword: e.target.value });
+  // const onConfirmPasswordChange = (e) =>
+  //   setFormValue({ ...formValue, confirmPassword: e.target.value });
 
   const onDateOfBirthNameChange = (e) =>
     setFormValue({ ...formValue, DateOfBirthName: e.target.value });
@@ -121,7 +126,7 @@ export const StepThree = ({setStep}) => {
 
       <div className="flex space-between">
         <button
-          onClick={onSubmit}
+        onClick={onBack}
           className="border w-[128px] h-[44px] bg-white text-black h-16 mt-10 rounded-xl font text-xl"
         >
           Back
@@ -130,6 +135,7 @@ export const StepThree = ({setStep}) => {
         <button
           onClick={onSubmit}
           className="border w-[280px] h-[44px] bg-black text-white h-16 mt-10 rounded-xl font text-xl"
+
         >
           {" "}
           Continue 3/3{" "}

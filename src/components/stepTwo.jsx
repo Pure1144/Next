@@ -8,13 +8,17 @@ export const StepTwo = ({setStep}) => {
 
   const onSubmit = () => {
     console.log(formValue);
+    let isErrorOccured = false;
 
     if (!formValue.mailName || formValue.mailName.length === 0) {
       setErrors((prev) => ({ ...prev, mailName: "Майл хаягаа оруулна уу?" }));
+      isErrorOccured = true;
     } else if (validateEmail(formValue.mailName) !== true) {
       setErrors((prev) => ({ ...prev, mailName: "Зөв майл хаяг оруулна уу?" }));
+      isErrorOccured = true;
     } else {
       setErrors((prev) => ({ ...prev, mailName: "" }));
+     
     } //validate mail шалгах функц
 
     function validateEmail(email) {
@@ -28,6 +32,7 @@ export const StepTwo = ({setStep}) => {
         ...prev,
         phoneNumberName: "Утасны дугаараа орууна уу?",
       }));
+      isErrorOccured = true;
     } else if (
       !formValue.phoneNumberName ||
       formValue.phoneNumberName?.length < 8
@@ -36,6 +41,7 @@ export const StepTwo = ({setStep}) => {
         ...prev,
         phoneNumberName: "Зөв утасны дугаараа орууна уу?",
       }));
+      isErrorOccured = true;
     } else {
       setErrors((prev) => ({ ...prev, phoneNumberName: "" })); //validate утасны дугаар шалгах функц
     }
@@ -43,14 +49,13 @@ export const StepTwo = ({setStep}) => {
     if (!formValue.password || formValue.password?.length === 0) {
       setErrors((prev) => ({ ...prev, password: "Нууц үгээ орууна уу?" }));
     }
-
-  
-    
+ 
     else if (validatePassword(formValue.password) !== true) {
       setErrors((prev) => ({
         ...prev,
         password: "Нууц үг нь нэгээс багагүй тоо,том, жижиг үсэг,тусгай тэмдэгт агуулсан 8-аас багагүй урттай байна.",
       }));
+      isErrorOccured = true;
     } else {
       setErrors((prev) => ({ ...prev, password: "" }));
     }
@@ -67,20 +72,31 @@ export const StepTwo = ({setStep}) => {
         ...prev,
         confirmPassword: "Нууц үгээ давтаж орууна уу?",
       }));
-
+      isErrorOccured = true;
     } 
     else if (formValue.confirmPassword !== formValue.password){
         setErrors((prev) => ({
             ...prev,
             confirmPassword: "Таны пасспорт таарахгүй байна.", 
         }));
+
+        
     }
     
     else {
       setErrors((prev) => ({ ...prev, confirmPassword: "" }));
     }
-    setStep(3) 
+    if (isErrorOccured === false) {
+      setStep(3);
+    }
+    // setStep(3) 
   };
+
+  const onBack = () => {
+
+    setStep(1) 
+  };
+    console.log(formValue);
 
   // setErrors({})
 
@@ -189,11 +205,11 @@ export const StepTwo = ({setStep}) => {
 
       <div className="flex space-between">
         <button
-          onClick={onSubmit}
+          onClick={onBack}
           className="border w-[128px] h-[44px] bg-white text-black h-16 mt-10 rounded-xl font text-xl"
         >
           Back
-        </button>
+        </button >
 
         <button
           onClick={onSubmit}
