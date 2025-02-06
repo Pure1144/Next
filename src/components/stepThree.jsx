@@ -77,56 +77,59 @@ const onDateChange =(e) => {
  
     // Зураг оруулахын тулд дараах хуудсаас оруулсан  https://medium.com/@raedswan121/how-to-upload-image-and-preview-it-using-reactjs-43b27c751255
 
-    const close = () =>{
+    const close = () => {
         setFormValue({...formValue, profilePicture: null});
     };
 
     return (
-        <div className="w-[480px]  bg-white border rounded-x1 p-8">
-          <img className="w-[60px] h-[60px]" src="pinecone-logo.png" />
-          <h2 className="text-[26px] text-foreground font-semibold">Join Us! 😎</h2>
-          <p className="text-[18px] whitespace-nowrap text-[#8E8E8E]">
-            Please provide all current information accurately.
-          </p>
-     
-          <div className="flex flex-col mt-10">
-            <label htmlFor="EmailName">
-              Date of birth <span className="text-red-500">*</span>
-            </label>
-            
-            <div className="w-[416px] h-[358px] fle col justify-between items-start inline-flex mt-10">  
-            <input
-              id="date"
-              text="Date od birth"
-              type="date"
-              onChange={onDateChange}
-              // className="id=dateOfBirthName w-full border py-3 px-2 rounded-xl"
-              placeholder="yyyy.mm.dd"
-            />
-     
-            {errors.date ? (
-              <p className="text-red-500">{errors.dateOfBirthName}</p>
-            ) : (
-              <></>
-            )}
-            <label  htmlFor="profileImageName">
-              Profile image<span className="text-red-500">*</span>
-            </label> {" "}
+      <> 
+        <div className="w-[480px] h-[655px] p-8 bg-white rounded-lg flex-col justify-between items-start inline-flex">
+           <div className="flex-col justify-start items-start flex">
+              <div className="h-[129px] flex-col justify-start items-start gap-2px flex">
+                   <img className="w-[60px] h-[60px]" src="pinecone-logo.png" />
+                      <div className="self stretch text-[#202124] text-[26px] font-semi-bold">
+                          Join Us! 😎
+                      </div>
+                          {/* <h2 className="text-[26px] text-foreground font-semibold"></h2> */}
+                       <p className="text-[18px] whitespace-nowrap text-[#8E8E8E]">
+                           Please provide all current information accurately.
+                       </p>
+             </div>
 
-            {formValue.profilePicture ? (
-              <div className="relative w-full h-[230px] flex-col justify-center items-center inline-flex h-[180px] w-[416px]">
-                <img src={formValue.profilePicture}/>
-                <button>
-                  onClick={close}
-                  className="absolute top-2 right-2 h-6 w-6 p-1.5 bg-[#202124] rounded-full flex justify-center items-center z-10"
-                
-                   <img
-                      src="close.png"
-                      className="h-full object-contain"
-                      alt="Close"
-                      />
-                </button>    
-              </div> 
+             <div className="w-[416px] h-[358px] fle col justify-between items-start inline-flex mt-10">  
+                   <input
+                     id="date"
+                     text="Date od birth"
+                     type="date"
+                     onChange={onDateChange}
+                         // className="id=dateOfBirthName w-full border py-3 px-2 rounded-xl"
+                     placeholder="yyyy.mm.dd"
+                   />
+
+                         {errors.date ? (
+                         <p className="text-red-500">{errors.date}</p>
+                         ) : (
+                         <></>
+                          )}
+     
+                              <label>
+                              Profile image<span className="text-red-500">*</span>{" "}
+                             </label> {" "}
+
+                     {formValue.profilePicture ? (
+                     <div className="relative w-full h-[230px] flex-col justify-center items-center inline-flex h-[180px] w-[416px]">
+                        <img src={formValue.profilePicture}/>
+                          <button
+                             onClick={close}
+                             className="absolute top-2 right-2 h-6 w-6 p-1.5 bg-[#202124] rounded-full flex justify-center items-center z-10"
+                                  >
+                              <img
+                                src="close.png"
+                                className="h-full object-contain"
+                                alt="Close"
+                              />
+                          </button>    
+                     </div> 
             ):(
               <label 
                  htmlFor="files"
@@ -138,16 +141,17 @@ const onDateChange =(e) => {
              onChange={imageOnChange}
              type="file"
              className="invisible"
+             name="profileImage"
              accept="image/*"
              />
              <img
                       src="image-min.webp"
                       className="w-[32px] h-[32px] p-2 bg-whiterounded-full justify-start items-center gap-2.5 inline-flex"
               />
-                      <p>Add image<p/>
+                    
             </label>
 
-            )};
+            )}
             </div>
             {errors.profileImage ? (
               <p className="text-[#e14942]">errors.profileImage</p>
@@ -173,6 +177,11 @@ const onDateChange =(e) => {
               />
             </div>
             </div>
+            
+            
+      </>
+    )
+           
              
              
           
