@@ -155,6 +155,7 @@ function onDateOfBirthNameChange(e) {
               Continue 3/3{" "}
             </button>
           </div>
+          <div>Ustgah</div>
         </div>
       );
 
