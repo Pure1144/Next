@@ -60,11 +60,11 @@ const backStep = () =>{
 
 
 
-function onDateOfBirthNameChange(e) {
+const onDateChange =(e) => {
         setFormValue({...formValue, date: e.target.value});
          };
          const imageOnChange = (e) => {
-            const file = e.target.file[0];
+            const file = e.target.files[0];
             var reader = new FileReader();
             reader.onloadend = function (){
                 setFormValue((prev)=>({...prev,profilePicture: reader.result}))
@@ -93,70 +93,93 @@ function onDateOfBirthNameChange(e) {
             <label htmlFor="EmailName">
               Date of birth <span className="text-red-500">*</span>
             </label>
-     
+            
+            <div className="w-[416px] h-[358px] fle col justify-between items-start inline-flex mt-10">  
             <input
-              id="dateOfBirthName"
+              id="date"
+              text="Date od birth"
               type="date"
-              onChange={onDateOfBirthNameChange}
-              className="id=dateOfBirthName w-full border py-3 px-2 rounded-xl"
+              onChange={onDateChange}
+              // className="id=dateOfBirthName w-full border py-3 px-2 rounded-xl"
               placeholder="yyyy.mm.dd"
             />
      
-            {errors.dateOfBirthName ? (
+            {errors.date ? (
               <p className="text-red-500">{errors.dateOfBirthName}</p>
             ) : (
               <></>
             )}
-          </div>
-     
-          <label  htmlFor="profileImageName">
+            <label  htmlFor="profileImageName">
               Profile image<span className="text-red-500">*</span>
+            </label> {" "}
+
+            {formValue.profilePicture ? (
+              <div className="relative w-full h-[230px] flex-col justify-center items-center inline-flex h-[180px] w-[416px]">
+                <img src={formValue.profilePicture}/>
+                <button>
+                  onClick={close}
+                  className="absolute top-2 right-2 h-6 w-6 p-1.5 bg-[#202124] rounded-full flex justify-center items-center z-10"
+                
+                   <img
+                      src="close.png"
+                      className="h-full object-contain"
+                      alt="Close"
+                      />
+                </button>    
+              </div> 
+            ):(
+              <label 
+                 htmlFor="files"
+                 className="relative w-full h-[230px] flex-col justify-center items-center inline-flex h-[180px] w-[416px] bg-[#7e7e7f]"
+              >
+
+             <input
+             id ="files"
+             onChange={imageOnChange}
+             type="file"
+             className="invisible"
+             accept="image/*"
+             />
+             <img
+                      src="image-min.webp"
+                      className="w-[32px] h-[32px] p-2 bg-whiterounded-full justify-start items-center gap-2.5 inline-flex"
+              />
+                      <p>Add image<p/>
             </label>
-     
-          <div className="flex flex-col items-center justify-center gap-y-2 cursor-pointer bg-gray-100 h-[240px] border rounded-md border-solid">
-          {/* <input hidden="" type="file" name="profileImage"></input> */}
-            
-     
-            {/* <label htmlFor="profileImageName">upload</label>     
-            <input                                            //зурган зориулж label нэмсэн.
-              type="file"                                     //зурган зориулсан төрөл
-              id="profileImageName"
-              onChange={onProfileImageNameChange}            //зураг оруулж ирэх
-              className="id=profileImageName w-full  h-[180px] font-bold text-black border py-3 px-2 rounded-xl hidden"
-              placeholder="Browse or Drop Image"
-            /> */}
-     
-                     <input type="file" onChange={handleChange} />                   
-                     <img src={file} />
-     
-                   
-     
-            {errors.profileImageName ? (
-              <p className="text-red-500">{errors.profileImageName}</p>
+
+            )};
+            </div>
+            {errors.profileImage ? (
+              <p className="text-[#e14942]">errors.profileImage</p>
             ) : (
               <></>
             )}
-          </div>
-     
-          <div className="flex space-between">
-            <button
-            onClick={onBack}
-              className="border w-[128px] h-[44px] bg-white text-black h-16 mt-10 rounded-xl font text-xl"
-            >
-              Back
-            </button>
-     
-            <button
+            </div>
+            <div className="flex w-full gap-[8px]">
+            
+            
+             
+              <button
+              onClick={backStep}
+              img={<img src="chevron_left.webp"/>}
+              className="w-[128px] h-11 px-3 py-2.5 bg-white justify-center items-center gap-1 inline-flex text-[#FFF]"
+              text="back"
+              />
+              <button
               onClick={onSubmit}
-              className="border w-[280px] h-[44px] bg-black text-white h-16 mt-10 rounded-xl font text-xl"
-     
-            >
-              {" "}
-              Continue 3/3{" "}
-            </button>
-          </div>
-          <div>Ustgah</div>
-        </div>
-      );
+              text="Continue 3?3"
+              img={<img src="chevron_left.webp"/>}
+              className="w-[280px] h-11 px-3 py-2.5 bg-[#121316] justify-center items-center gap-1 inline-flex text-[#FFF]"
+              />
+            </div>
+            </div>
+             
+             
+          
+        
 
+
+
+     
+          
      
